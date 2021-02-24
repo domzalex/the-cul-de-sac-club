@@ -1,0 +1,55 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+@font-face {
+    font-family: 'retro_computerregular';
+    src: url('../retro_computer_personal_use-webfont.woff2') format('woff2'),
+         url('../retro_computer_personal_use-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+body {
+    background-color: rgb(57,38,136);
+    color: hsl(181,46%,67%);
+    font-family: 'retro_computerregular';
+}
+
+h1 {
+    margin-bottom: 50px;
+}
+
+form {
+    width: 800px;
+    height: 600px;
+}
+
+input,
+textarea {
+    background-color: hsl(181,46%,67%);
+    color: rgb(57,38,136);
+    border: none;
+    height: 50px;
+    font-family: 'retro_computerregular';
+    font-size: 18px;
+}
+::placeholder {
+    font-family: 'retro_computerregular';
+}
+
+
+.name {
+    width: 140px;
+}
+.title {
+    width: 650px;
+}
+.content {
+    width: 795px;
+    height: 545px;
+    margin-top: 5px;
+    overflow-wrap: break-word;
+}

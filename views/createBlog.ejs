@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/static/stylesheets/blogCreate.css">
+    <title>Create Blog Entry</title>
+</head>
+<body>
+    <h1>blog POST test</h1>
+
+    <form action="/createBlogEntry" method="POST">
+        <input class="name" name="name" type="text" placeholder="Your name">
+        <input class="title" name="title" type="text" placeholder="Post title">
+        <textarea class="content" name="content" rows="10" columns="10" type="text" placeholder="Post body"></textarea>
+        <button type="submit">submit</button>
+    </form>
+</body>
+</html>

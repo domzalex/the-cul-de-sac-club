@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/stylesheets/main.css">
+
+    <title>TEST NAME HOMEPAGE</title>
+</head>
+<body>
+    <h1>blog test</h1>
+    <a href="/createBlogEntry">New Blog Post</a>
+    <% blogEntry.forEach(details => { %>
+        <ul class="blogEntries">
+            <li class="entry">
+                <h3 class="title"><%= details.title %> -<span> written by </span><%= details.name %> - <span><%= details.date %></span></h3>
+                <p class="body"><%= details.content %></p>
+            </li>
+        </ul>
+    <% }) %>
+</body>
+</html> 
