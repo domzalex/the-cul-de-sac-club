@@ -4,20 +4,78 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="/static/stylesheets/main.css">
-
-    <title>TEST NAME HOMEPAGE</title>
+    <link rel="stylesheet" href="/static/stylesheets/mobile.css">
+    <title>HOMEPAGE</title>
 </head>
 <body>
-    <h1>blog test</h1>
-    <a href="/createBlogEntry">New Blog Post</a>
-    <% blogEntry.forEach(details => { %>
-        <ul class="blogEntries">
-            <li class="entry">
-                <h3 class="title"><%= details.title %> -<span> written by </span><%= details.name %> - <span><%= details.date %></span></h3>
-                <p class="body"><%= details.content %></p>
-            </li>
-        </ul>
-    <% }) %>
+    <script>
+        var toggle = 0;
+        function toggleMenu() {
+            
+            if (toggle == 0) {
+                document.querySelector('.menuOpenClose').innerHTML = 'CLOSE';
+                document.querySelector('.navMobile').style.display = 'flex';
+                document.querySelector('body').style.position = 'fixed';
+                toggle = 1;
+            } else if (toggle == 1) {
+                document.querySelector('.menuOpenClose').innerHTML = 'MENU';
+                document.querySelector('.navMobile').style.display = 'none';
+                document.querySelector('body').style.position = '';
+                toggle = 0;
+            } else {
+                //do nothing
+            }
+            
+        };
+    </script>
+    <button onclick="toggleMenu()" class="menuOpenClose">MENU</button>
+    <nav class="navMobile">
+        <a href="/userProfile">PROFILE</a>
+        <a href="/login">LOGIN</a>
+        <a href="/logout">LOGOUT</a>
+        <a href="/register">REGISTER</a>
+        <a href="/otherStuff">OTHER STUFF</a>
+    </nav>
+    <nav>
+        <a href="/userProfile">PROFILE</a>
+        <a href="/login">LOGIN</a>
+        <a href="/logout">LOGOUT</a>
+        <a href="/register">REGISTER</a>
+    </nav>
+    <div class="main-container">
+        <h1>WELCOME TO THE CUL-DE-SAC</h1>
+        <div class="inner-container">
+            <div class="postsContainer">
+                <h2>RECENT POSTS</h2>
+                <span><form class="sort" action="/toggleSort" method="POST"><button class="sortButton" type="submit">TOGGLE SORT</button></form></span>
+                <span class="scrollText">scroll for more</span>
+                <div class="recentPosts">
+                    <% blogEntry.forEach(details => { %>
+                        <div class="entry">
+                            <h3 class="title"><%= details.title %><span> by </span><form class="homeUserForm" action="/" method="POST"><button type="submit" name="username" value="<%= details.name %>" class="userLink"><%= details.name %></button></form><span> on <%= details.date %></span></h3>
+                            <p class="content"><%= details.content %></p>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+            
+            <div class="otherContainer">
+                <h2>OTHER STUFF</h2>
+                <span style="pointer-events: none; visibility: hidden;"><form class="sort" action="/toggleSort" method="POST"><button class="sortButton" type="submit">TOGGLE SORT</button></form></span>
+                <span class="scrollText">scroll for more</span>
+                <div class="stuffContainer">
+                    <a href="http://www.alexdomzalski.com/skeletonGauntlet/index.html" target="_blank">The Skeleton Gauntlet</a>
+                    <p class="otherText">A silly turn-based game about fighting skeletons.</p>
+                    <a href="http://www.alexdomzalski.com/skeletonGauntlet/index.html">The Skeleton Gauntlet</a>
+                    <p class="otherText">A silly turn-based game about fighting skeletons.</p>
+                    <a href="http://www.alexdomzalski.com/skeletonGauntlet/index.html">The Skeleton Gauntlet</a>
+                    <p class="otherText">A silly turn-based game about fighting skeletons.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 </body>
 </html> 

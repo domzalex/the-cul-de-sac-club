@@ -9,43 +9,255 @@ html {
 
 @font-face {
     font-family: 'retro_computerregular';
-    src: url('../retro_computer_personal_use-webfont.woff2') format('woff2'),
-         url('../retro_computer_personal_use-webfont.woff') format('woff');
+    src: url('../retro_computer_personal_use-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
-
 
 body {
     background-color: rgb(57,38,136);
     color: hsl(181,46%,67%);
     font-family: 'retro_computerregular';
 }
+.main-container {
+    border: solid 5px hsl(181,46%,67%);
+    height: 85vh;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.main-container::-webkit-scrollbar {
+    display: none;
+}
+.inner-container {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    height: 80%;
+}
+
+.postsContainer,
+.otherContainer {
+    width: 50%;
+}
+.otherText {
+    margin: 0px 0px 40px 25px;
+    padding: 0;
+    font-size: 18px;
+    color: rgba(131,208,209,0.5)
+}
+.stuffContainer a {
+    display: inline-block;
+    margin-left: 25px;
+    margin-top: 8px;
+    font-size: 24px;
+    border: none;
+}
+
+.recentPosts,
+.stuffContainer {
+    position: relative;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding: 50px 0px;
+    margin-top: 25px;
+    height: 70%;
+    border: solid 5px hsl(181,46%,67%);
+}
+.recentPosts::-webkit-scrollbar,
+.stuffContainer::-webkit-scrollbar {
+    display: none;
+}
+
+.sort {
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+.sortButton {
+    border: none;
+    display: inline-block;
+    width: auto;
+    height: auto;
+    text-decoration: underline;
+    text-align: center;
+    font-size: 18px;
+    color: rgba(131,208,209,0.5)
+}
 
 h1 {
-    margin-bottom: 50px;
+    margin: 50px 0px 100px 0px;
+    text-align: center;
+    width: 100%;
+}
+h2 {
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    margin-bottom: 5px;
 }
 
-a {
-    font-size: 28px;
+a, .userName, .homeUserForm {
+    font-size: 32px;
     color: hsl(181,46%,67%);
 }
-a:hover {
+a:hover,
+a:focus {
     background-color: hsl(181,46%,67%);
     color: rgb(57,38,136);
 }
 
-h3 {
-    font-size: 20px;
+h3, .userLink {
+    font-size: 24px;
     margin-bottom: 12px;
+    border: none;
+}
+.userLink {
+    width: auto;
+    text-decoration: underline;
+    margin: auto;
+    height: auto;
+    cursor: pointer;
 }
 
 span {
-    font-size: 16px;
+    text-align: center;
+    font-size: 18px;
     color: rgba(131,208,209,0.5)
+}
+.scrollText {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
 }
 
 ul {
     margin-top: 70px;
     list-style: none;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    font-size: 24px;
+    padding: 25px;
+    border: solid 5px hsl(181,46%,67%);
+}
+.navMobile {
+    background-color: rgb(57,38,136);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 90vh;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    font-size: 24px;
+    padding: 0;
+    z-index: 3;
+    border: none;
+}
+.navMobile a {
+    margin: 10px 0px;
+}
+.menuOpenClose {
+    display: none;
+    width: 100vw;
+    height: auto;
+    position: fixed;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: none;
+    border-bottom: solid 5px hsl(181,46%,67%);
+    padding: 20px 0px;
+    margin: 0;
+    font-size: 32px;
+    z-index: 10;
+}
+.menuOpenClose:hover {
+    background-color: rgb(57,38,136);
+    color: hsl(181,46%,67%);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+}
+.homeUserForm {
+    display: inline-block;
+    width: auto;
+}
+
+
+input,
+textarea {
+    background-color: hsl(181,46%,67%);
+    color: rgb(57,38,136);
+    margin: 10px;
+    border: none;
+    height: 50px;
+    width: 400px;
+    font-family: 'retro_computerregular';
+    font-size: 24px;
+    opacity: 0.6;
+}
+input:hover,
+textarea:hover {
+    opacity: 1;
+}
+::placeholder {
+    font-family: 'retro_computerregular';
+}
+button {
+    margin: 10px;
+    border: solid 5px hsl(181,46%,67%);
+    height: 50px;
+    width: 400px;
+    font-family: 'retro_computerregular';
+    font-size: 24px;
+    background-color: rgb(57,38,136);
+    color: hsl(181,46%,67%);
+}
+button:hover {
+    background-color: hsl(181,46%,67%);
+    color: rgb(57,38,136);
+}
+
+.entry {
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+    border-bottom: solid 5px hsl(181,46%,67%);
+}
+
+h3, p {
+    padding: 0px 25px;
+    letter-spacing: 1.5px;
+}
+p {
+    margin-top: 50px;
+    line-height: 1.6em;
+    font-size: 20px;
+    
+}
+.profileP {
+    margin-bottom: 25px;
+}
+
+.delete {
+    margin: 25px;
+    font-size: 20px;
 }

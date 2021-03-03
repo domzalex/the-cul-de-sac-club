@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/static/stylesheets/main.css">
+    <link rel="stylesheet" href="/static/stylesheets/mobile.css">
+    <title>PROFILE</title>
+</head>
+<body>
+    <script>
+        var toggle = 0;
+        function toggleMenu() {
+            
+            if (toggle == 0) {
+                document.querySelector('.menuOpenClose').innerHTML = 'CLOSE';
+                document.querySelector('.navMobile').style.display = 'flex';
+                document.querySelector('body').style.position = 'fixed';
+                toggle = 1;
+            } else if (toggle == 1) {
+                document.querySelector('.menuOpenClose').innerHTML = 'MENU';
+                document.querySelector('.navMobile').style.display = 'none';
+                document.querySelector('body').style.position = '';
+                toggle = 0;
+            } else {
+                //do nothing
+            }
+            
+        };
+    </script>
+    <button onclick="toggleMenu()" class="menuOpenClose">MENU</button>
+    <nav class="navMobile">
+        <li class="userName">USER: <%= user.username %></li>
+        <a href="/createBlogEntry">NEW BLOG POST</a>
+        <a href="/">HOME</a>
+        <a href="/logout">LOGOUT</a>
+    </nav>
+    <nav>
+        <li class="userName">USER: <%= user.username %></li>
+        <a href="/createBlogEntry">NEW BLOG POST</a>
+        <a href="/">HOME</a>
+        <a href="/logout">LOGOUT</a>
+    </nav>
+    <div class="main-container">
+        <% blogEntry.forEach(details => { %>
+            <% if (details.name == user.username) { %>
+            <ul class="blogEntries">
+                <li class="entry">
+                    <h3 class="title"><%= details.title %> -<span> written by </span><%= details.name %> - <span><%= details.date %></span></h3>
+                    <p class="profileP"><%= details.content %></p>
+                    <a href="/remove/<%= details._id %>" class="delete">DELETE</a>
+                </li>
+            </ul>
+            <% } %>
+        <% }) %>
+    </div>
+    
+</body>
+</html> 
