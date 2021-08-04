@@ -10,24 +10,28 @@
     <title>Chatroom || The Cul-De-Sac</title>
 </head>
 <body>
-    <%- include('./nav'); -%>
-    <h1>The Lounge</h1>
-
-    <div class="chat-container">
-        <div class="chat-messages">
-
+    <div class="main-container">
+        <%- include('./nav'); -%>
+        <div class="chat-container">
+            <div class="chat-inner-container">
+                <div class="chat-messages">
+                    
+                </div>
+            </div>
+            <form id="chat-form">
+                <input
+                    id="message"
+                    type="text"
+                    placeholder="Enter message..."
+                    required
+                    autocomplete="off"
+                ></input>
+                <button id="chat-submit" class="btn">Send</button>
+            </form>
         </div>
-        <form id="chat-form">
-            <input
-                id="message"
-                type="text"
-                placeholder="Enter message..."
-                required
-                autocomplete="off"
-            />
-            <button class="btn">Send</button>
-        </form>
+        
     </div>
+    
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="/static/js/main.js"></script>

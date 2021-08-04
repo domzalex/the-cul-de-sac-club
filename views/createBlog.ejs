@@ -5,20 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    
-    <link rel="stylesheet" href="/static/stylesheets/blogCreate.css">
+    <link rel="stylesheet" href="/static/stylesheets/main.css">
     <link rel="stylesheet" href="/static/stylesheets/mobile.css">
     <title>New Blog Post</title>
 </head>
 <body>
-    <%- include('./nav'); -%>
+    
     <div class="main-container">
+        <%- include('./nav'); -%>
         
         <h1>CREATE A NEW ENTRY</h1>
-        <form action="/createBlogEntry" method="POST">
-            <input class="title" name="title" type="text" placeholder="Post title">
-            <textarea class="content" name="content" rows="10" columns="10" type="text" placeholder="Post body"></textarea>
-            <button type="submit">submit</button>
+        <form id="blog-form" action="/createBlogEntry" method="POST">
+            <input id="blog-title" class="title" name="title" type="text" placeholder="Post title">
+            <textarea id="blog-content" class="content" name="content" rows="10" columns="10" type="text" placeholder="Post body"></textarea>
+            <button id="blog-submit" type="submit">submit</button>
         </form>
     </div>
     

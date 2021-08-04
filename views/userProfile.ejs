@@ -37,23 +37,27 @@
         <a href="/logout">LOGOUT</a>
         <a href="/otherStuff">OTHER STUFF</a>
     </nav>
-    <nav>
-        <a href="/">HOME</a>
-        <a href="/createBlog">NEW BLOG POST</a>
-        <a href="/logout">LOGOUT</a>
-    </nav>
+    
     <div class="main-container">
-        <% blogEntry.forEach(details => { %>
-            <% if (details.name == user.username) { %>
-            <ul class="blogEntries">
-                <li class="entry">
-                    <h3 class="title"><%= details.title %> -<span> written by </span><%= details.name %> - <span><%= details.date %></span></h3>
-                    <p class="profileP"><%= details.content %></p>
-                    <a href="/remove/<%= details._id %>" class="delete">DELETE</a>
-                </li>
-            </ul>
-            <% } %>
-        <% }) %>
+        <nav>
+            <a href="/">HOME</a>
+            <a href="/createBlog">NEW BLOG POST</a>
+            <a href="/logout">LOGOUT</a>
+        </nav>
+        <div class="post-container">
+            <% blogEntry.forEach(details => { %>
+                <% if (details.name == user.username) { %>
+                <ul class="blogEntries">
+                    <li class="entry">
+                        <h3 class="title"><%= details.title %> -<span> written by </span><%= details.name %> - <span><%= details.date %></span></h3>
+                        <p class="profileP"><%= details.content %></p>
+                        <a href="/remove/<%= details._id %>" class="delete">DELETE</a>
+                    </li>
+                </ul>
+                <% } %>
+            <% }) %>
+        </div>
+        
     </div>
     
 </body>

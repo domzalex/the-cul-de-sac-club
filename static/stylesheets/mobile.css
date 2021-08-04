@@ -23,15 +23,16 @@
         color: hsl(181,46%,67%);
         font-family: 'retro_computerregular';
         padding: 0;
+        overflow: hidden;
     }
     .main-container {
         border: none;
-        margin-top: 100px;
-        height: auto;
-        overflow: scroll;
+        height: 90%;
+        overflow-y: scroll;
         -ms-overflow-style: none;
         scrollbar-width: none;
-        padding: 10px;
+        width: 100%;
+        padding: 0px;
     }
     .main-container::-webkit-scrollbar {
         display: none;
@@ -43,6 +44,15 @@
         justify-content: space-between;
         width: 100%;
         height: auto;
+        transform: translateY(70px);
+    }
+    
+    .post-container {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .post-container::-webkit-scrollbar {
+        display: none;
     }
 
     .postsContainer,
@@ -82,9 +92,10 @@
 
 
     h1 {
-        margin: 50px 0px 50px 0px;
+        margin: 80px 0px 10px 0px;
         text-align: center;
         width: 100%;
+        font-size: 28px;
     }
     h2 {
         text-align: center;
@@ -258,6 +269,68 @@
     .delete {
         margin: 10px;
         font-size: 20px;
+    }
+
+    #blog-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 60%;
+    }
+
+    #blog-title,
+    #blog-content {
+        background-color: hsl(181,46%,67%);
+        color: rgb(57,38,136);
+        margin: 10px;
+        border: none;
+        width: 90%;
+        font-family: 'retro_computerregular';
+        font-size: 24px;
+    }
+
+    .chat-container {
+        position: fixed;
+        top: 80px;
+        overflow: scroll;
+        border-top: none;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 80%;
+    }
+    
+    .chat-inner-container {
+        position: absolute;
+        bottom: 75px;
+        width: 100%;
+        height: 100%;
+    }
+
+    #chat-form {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        text-align: center;
+        height: 70px;
+        position: fixed;
+        bottom: 0px;
+        padding: 0px;
+        border-top: solid 5px hsl(181,46%,67%);
+    }
+
+    #chat-form input {
+        width: 70%;
+        font-size: 18px;
+        white-space: pre-wrap;
+    }
+    
+    #chat-form button {
+        font-size: 18px;
+        width: 20%;
+        cursor: pointer;
     }
 
 }

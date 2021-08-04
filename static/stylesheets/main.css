@@ -3,10 +3,6 @@
     margin: 0;
 }
 
-html {
-    padding: 20px;
-}
-
 @font-face {
     font-family: 'retro_computerregular';
     src: url('../retro_computer_personal_use-webfont.woff') format('woff');
@@ -18,13 +14,18 @@ body {
     background-color: rgb(57,38,136);
     color: hsl(181,46%,67%);
     font-family: 'retro_computerregular';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 .main-container {
-    padding: 25px;
+    position: relative;
     border: solid 5px hsl(181,46%,67%);
     border-top: none;
-    height: calc(85vh - 100px);
-    overflow: scroll;
+    height: 95vh;
+    width: 95vw;
+    overflow: hidden;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
@@ -35,12 +36,17 @@ body {
     margin: auto;
     display: flex;
     justify-content: space-between;
-    width: 95%;
-    height: calc(90% - 80px);
+    width: 100%;
+    height: calc(100% - 80px);
 }
 
 .postsContainer {
     width: 60%;
+}
+
+.post-container {
+    height: 100%;
+    overflow: scroll;
 }
 
 .otherContainer {
@@ -69,8 +75,13 @@ body {
     padding: 50px 0px;
     margin-top: 25px;
     height: 90%;
-    border: solid 5px hsl(181,46%,67%);
+    border-top: solid 5px hsl(181,46%,67%);
 }
+
+.recentPosts {
+    border-right: solid 5px hsl(181,46%,67%);
+}
+
 .recentPosts::-webkit-scrollbar,
 .stuffContainer::-webkit-scrollbar {
     display: none;
@@ -86,6 +97,7 @@ h2 {
     text-align: center;
     width: 100%;
     margin: auto;
+    margin-top: 25px;
     margin-bottom: 5px;
 }
 
@@ -136,6 +148,8 @@ nav {
     font-size: 24px;
     padding: 25px;
     border: solid 5px hsl(181,46%,67%);
+    border-left: none;
+    border-right: none;
 }
 .navMobile {
     background-color: rgb(57,38,136);
@@ -253,36 +267,105 @@ p {
 }
 
 
+/* CREATE BLOG STYLING */
 
+#blog-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 60%;
+}
+
+#blog-title,
+#blog-content {
+    background-color: hsl(181,46%,67%);
+    color: rgb(57,38,136);
+    margin: 10px;
+    border: none;
+    width: 60%;
+    font-family: 'retro_computerregular';
+    font-size: 24px;
+}
+#blog-content {
+    height: 60%;
+}
+#blog-title {
+    height: 50px;
+}
+
+
+
+::placeholder {
+    font-family: 'retro_computerregular';
+}
+#blog-submit {
+    margin: 10px;
+    border: solid 5px hsl(181,46%,67%);
+    height: 50px;
+    width: 90%;
+    max-width: 400px;
+    font-family: 'retro_computerregular';
+    font-size: 24px;
+    background-color: rgb(57,38,136);
+    color: hsl(181,46%,67%);
+}
+#blog-submit:hover {
+    background-color: hsl(181,46%,67%);
+    color: rgb(57,38,136);
+}
+
+.entry {
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+    border-bottom: solid 5px hsl(181,46%,67%);
+}
 
 
 
 /* CHAT STYLING */
 
 .chat-container {
-    position: relative;
+    position: absolute;
+    bottom: 0px;
     overflow: hidden;
-    border: solid 5px hsl(181,46%,67%);
-    height: calc(85vh - 100px);
+    border-top: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(95vh - 93px);
+}
+
+.chat-inner-container {
+    position: absolute;
+    bottom: 75px;
+    width: 100%;
+    height: 100%;
 }
 
 .chat-messages {
-    height: 67vh;
+    border-top: solid 5px hsl(181,46%,67%);
+    padding-top: 50px;
+    height: calc(100% - 55px);
     overflow-y: scroll;
 }
 
 #chat-form {
+    display: flex;
+    flex-direction: row;
     width: 100%;
     text-align: center;
-    height: 45px;
+    height: 70px;
     position: absolute;
-    bottom: 25px;
-    display: inline-block;
+    bottom: 0px;
+    padding: 0px;
     border-top: solid 5px hsl(181,46%,67%);
 }
 
 #chat-form input {
     width: 50%;
+    white-space: pre-wrap;
 }
 
 #chat-form button {
@@ -292,4 +375,8 @@ p {
 
 .text {
     margin: 0;
+}
+
+.meta {
+    margin-top: 35px;
 }

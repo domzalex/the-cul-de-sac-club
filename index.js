@@ -5,11 +5,14 @@ const server = http.createServer(app);
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const sessionStore = require('express-session');
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const LocalStrategy = require('passport-local');
 const passportLocalMongoose = require('passport-local-mongoose');
-const socketio = require('socket.io');;
+const socketio = require('socket.io');
 const io = socketio(server);
+const passportSocketIo = require('passport.socketio');
 const messageFormat = require('./utils/messages');
 const morgan = require('morgan');
 
@@ -36,7 +39,7 @@ mongoose.set('useFindAndModify', false);
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
     console.log('DB connected.');
     //init server
-    server.listen("0.0.0.0", 8080, () => console.log('Server running.'));
+    server.listen(8080, "0.0.0.0", () => console.log('Server running.'));
 });
 
 
@@ -59,11 +62,8 @@ passport.deserializeUser(User.deserializeUser());
 const chatBot = 'ChatBot';
 
 io.on('connection', socket => {
-    socket.on('chatMessage', message => {
-        io.emit('message', messageFormat('user', message));
-    });
 
-    socket.emit('message', messageFormat(chatBot, 'Welcome to the lounge...'));
+    socket.emit('message', messageFormat(chatBot, 'Welcome ' + User.username + ' to the lounge...'));
     
     //for when user connects
     socket.broadcast.emit('message', messageFormat(chatBot, 'A user has joined the lounge.'));
@@ -74,6 +74,9 @@ io.on('connection', socket => {
     });
 
     //listening for messages
+    socket.on('chatMessage', message => {
+        io.emit('message', messageFormat(User.username, message));
+    });
     
 });
 
@@ -96,7 +99,7 @@ app.get('/register', (req, res) => {
 
 //gets login/logout
 app.get('/login', (req, res) => {
-    res.render('login.ejs'); 
+    res.render('login.ejs');
 });
 app.get("/logout", (req, res) => { 
     req.logout(); 
@@ -113,8 +116,9 @@ app.get("/otherStuff", (req, res) => {
 }); 
 
 app.get("/chatRoom", isLoggedIn, (req, res) => {
-    var user = req.user.username;
-    res.render('chatRoom.ejs');
+    var user = req.user;
+    res.render('chatRoom.ejs', { user: user.username });
+    console.log(user.username);
 }); 
 
 //gets blogEntryPage
@@ -148,9 +152,9 @@ app.post("/register", (req, res) => {
 
 //posts login
 app.post("/login", passport.authenticate("local", { 
-    successRedirect: "/userProfile", 
+    successRedirect: "/", 
     failureRedirect: "/login"
-}), (req, res) => { 
+}), (req, res) => {
 }); 
 
 //posts home (to get user profile page from entry)
@@ -193,5 +197,3 @@ function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()) return next(); 
     res.redirect("/login"); 
 } 
-
-
