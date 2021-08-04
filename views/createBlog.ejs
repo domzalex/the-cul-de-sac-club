@@ -11,35 +11,7 @@
     <title>New Blog Post</title>
 </head>
 <body>
-    <script>
-        var toggle = 0;
-        function toggleMenu() {
-            
-            if (toggle == 0) {
-                document.querySelector('.menuOpenClose').innerHTML = 'CLOSE';
-                document.querySelector('.navMobile').style.display = 'flex';
-                document.querySelector('body').style.position = 'fixed';
-                toggle = 1;
-            } else if (toggle == 1) {
-                document.querySelector('.menuOpenClose').innerHTML = 'MENU';
-                document.querySelector('.navMobile').style.display = 'none';
-                document.querySelector('body').style.position = '';
-                toggle = 0;
-            } else {
-                //do nothing
-            }
-            
-        };
-    </script>
-    <button onclick="toggleMenu()" class="menuOpenClose">MENU</button>
-    <nav class="navMobile">
-        <a href="/userProfile">PROFILE</a>
-        <a href="/logout">LOGOUT</a>
-    </nav>
-    <nav>
-        <a href="/userProfile">PROFILE</a>
-        <a href="/logout">LOGOUT</a>
-    </nav>
+    <%- include('./nav'); -%>
     <div class="main-container">
         
         <h1>CREATE A NEW ENTRY</h1>

@@ -4,7 +4,7 @@
 }
 
 html {
-    padding: 25px;
+    padding: 20px;
 }
 
 @font-face {
@@ -20,8 +20,10 @@ body {
     font-family: 'retro_computerregular';
 }
 .main-container {
+    padding: 25px;
     border: solid 5px hsl(181,46%,67%);
-    height: 85vh;
+    border-top: none;
+    height: calc(85vh - 100px);
     overflow: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -34,13 +36,17 @@ body {
     display: flex;
     justify-content: space-between;
     width: 95%;
-    height: 80%;
+    height: calc(90% - 80px);
 }
 
-.postsContainer,
-.otherContainer {
-    width: 50%;
+.postsContainer {
+    width: 60%;
 }
+
+.otherContainer {
+    width: 40%;
+}
+
 .otherText {
     margin: 0px 0px 40px 25px;
     padding: 0;
@@ -50,7 +56,6 @@ body {
 .stuffContainer a {
     display: inline-block;
     margin-left: 25px;
-    margin-top: 8px;
     font-size: 24px;
     border: none;
 }
@@ -63,7 +68,7 @@ body {
     scrollbar-width: none;
     padding: 50px 0px;
     margin-top: 25px;
-    height: 70%;
+    height: 90%;
     border: solid 5px hsl(181,46%,67%);
 }
 .recentPosts::-webkit-scrollbar,
@@ -71,24 +76,9 @@ body {
     display: none;
 }
 
-.sort {
-    display: flex;
-    width: 100%;
-    height: auto;
-}
-.sortButton {
-    border: none;
-    display: inline-block;
-    width: auto;
-    height: auto;
-    text-decoration: underline;
-    text-align: center;
-    font-size: 18px;
-    color: rgba(131,208,209,0.5)
-}
 
 h1 {
-    margin: 50px 0px 100px 0px;
+    margin: 30px 0px 30px 0px;
     text-align: center;
     width: 100%;
 }
@@ -260,4 +250,46 @@ p {
 .delete {
     margin: 25px;
     font-size: 20px;
+}
+
+
+
+
+
+
+/* CHAT STYLING */
+
+.chat-container {
+    position: relative;
+    overflow: hidden;
+    border: solid 5px hsl(181,46%,67%);
+    height: calc(85vh - 100px);
+}
+
+.chat-messages {
+    height: 67vh;
+    overflow-y: scroll;
+}
+
+#chat-form {
+    width: 100%;
+    text-align: center;
+    height: 45px;
+    position: absolute;
+    bottom: 25px;
+    display: inline-block;
+    border-top: solid 5px hsl(181,46%,67%);
+}
+
+#chat-form input {
+    width: 50%;
+}
+
+#chat-form button {
+    width: 200px;
+    cursor: pointer;
+}
+
+.text {
+    margin: 0;
 }

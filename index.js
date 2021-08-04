@@ -1,11 +1,17 @@
 const express = require("express");
 const app = express();
+const http = require('http');
+const server = http.createServer(app);
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const LocalStrategy = require('passport-local');
 const passportLocalMongoose = require('passport-local-mongoose');
+const socketio = require('socket.io');;
+const io = socketio(server);
+const messageFormat = require('./utils/messages');
+const morgan = require('morgan');
 
 //models
 const BlogEntry = require('./models/BlogEntry');
@@ -14,10 +20,12 @@ const User = require('./models/user');
 //takes care of dotenv
 dotenv.config();
 
+//Logging middleware
+app.use(morgan('combined'));
+
 //allows css to be linked in html
 app.use('/static', express.static('static'));
 app.use(express.urlencoded({ extended: true }));
-
 
 //db connection
 mongoose.set('useNewUrlParser', true);  
@@ -28,7 +36,7 @@ mongoose.set('useFindAndModify', false);
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
     console.log('DB connected.');
     //init server
-    app.listen(3000, () => console.log('Server running.'));
+    server.listen("0.0.0.0", 8080, () => console.log('Server running.'));
 });
 
 
@@ -39,7 +47,7 @@ app.use(require("express-session")({
     secret: "Super epic secret", 
     resave: false, 
     saveUninitialized: false
-})); 
+}));
 
 app.use(passport.initialize()); 
 app.use(passport.session()); 
@@ -48,6 +56,26 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser()); 
 passport.deserializeUser(User.deserializeUser()); 
 
+const chatBot = 'ChatBot';
+
+io.on('connection', socket => {
+    socket.on('chatMessage', message => {
+        io.emit('message', messageFormat('user', message));
+    });
+
+    socket.emit('message', messageFormat(chatBot, 'Welcome to the lounge...'));
+    
+    //for when user connects
+    socket.broadcast.emit('message', messageFormat(chatBot, 'A user has joined the lounge.'));
+
+    //for when user disconnects
+    socket.on('disconnect', () => {
+        io.emit('message', messageFormat(chatBot, 'A user has left the lounge.'));
+    });
+
+    //listening for messages
+    
+});
 
 //////////////////////////////////////
 // GET METHODS                     
@@ -55,18 +83,10 @@ passport.deserializeUser(User.deserializeUser());
 
 //gets homepage
 
-var toggleSort = 1;
 app.get('/', (req, res) => {
-    if (toggleSort == 0) {
-        BlogEntry.find({}, (err, entries) => {
-            res.render('home.ejs', { blogEntry: entries });
-        });
-    } else if (toggleSort == 1) {
-        BlogEntry.find({}, (err, entries) => {
-            res.render('home.ejs', { blogEntry: entries });
-        }).sort({_id: -1});
-    }
-    
+    BlogEntry.find({}, (err, entries) => {
+        res.render('home.ejs', { blogEntry: entries });
+    }).sort({_id: -1});
 });
 
 //gets user registration
@@ -92,8 +112,13 @@ app.get("/otherStuff", (req, res) => {
     res.render('otherStuff.ejs');
 }); 
 
+app.get("/chatRoom", isLoggedIn, (req, res) => {
+    var user = req.user.username;
+    res.render('chatRoom.ejs');
+}); 
+
 //gets blogEntryPage
-app.get('/createBlogEntry', isLoggedIn, (req, res) => {
+app.get('/createBlog', isLoggedIn, (req, res) => {
     var user = req.user;
     res.render('createBlog.ejs');
 });
@@ -135,16 +160,6 @@ app.post("/", (req, res) => {
         res.render('profile.ejs', { blogEntry: entries, req: req, name: user });
     }).sort({_id: -1});
 }); 
-
-//posts toggleSort
-app.post('/toggleSort', (req, res) => {
-    if (toggleSort == 1) {
-        toggleSort = 0;
-    } else if (toggleSort == 0) {
-        toggleSort = 1;
-    };
-    res.redirect('/');
-});
 
 //posts blogEntry
 app.post('/createBlogEntry', async (req, res) => {

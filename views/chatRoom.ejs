@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/static/stylesheets/main.css">
+    <link rel="stylesheet" href="/static/stylesheets/mobile.css">
+    <title>Chatroom || The Cul-De-Sac</title>
+</head>
+<body>
+    <%- include('./nav'); -%>
+    <h1>The Lounge</h1>
+
+    <div class="chat-container">
+        <div class="chat-messages">
+
+        </div>
+        <form id="chat-form">
+            <input
+                id="message"
+                type="text"
+                placeholder="Enter message..."
+                required
+                autocomplete="off"
+            />
+            <button class="btn">Send</button>
+        </form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
