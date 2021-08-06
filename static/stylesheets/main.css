@@ -56,13 +56,13 @@ body {
 .otherText {
     margin: 0px 0px 40px 25px;
     padding: 0;
-    font-size: 18px;
+    font-size: 14px;
     color: rgba(131,208,209,0.5)
 }
 .stuffContainer a {
     display: inline-block;
     margin-left: 25px;
-    font-size: 24px;
+    font-size: 18px;
     border: none;
 }
 
@@ -73,7 +73,7 @@ body {
     -ms-overflow-style: none;
     scrollbar-width: none;
     padding: 50px 0px;
-    margin-top: 25px;
+    margin-top: 15px;
     height: 90%;
     border-top: solid 5px hsl(181,46%,67%);
 }
@@ -95,14 +95,15 @@ h1 {
 }
 h2 {
     text-align: center;
+    font-size: 18px;
     width: 100%;
     margin: auto;
-    margin-top: 25px;
+    margin-top: 15px;
     margin-bottom: 5px;
 }
 
 a, .userName, .homeUserForm {
-    font-size: 32px;
+    font-size: 24px;
     color: hsl(181,46%,67%);
 }
 a:hover,
@@ -112,7 +113,7 @@ a:focus {
 }
 
 h3, .userLink {
-    font-size: 24px;
+    font-size: 18px;
     margin-bottom: 12px;
     border: none;
 }
@@ -126,7 +127,7 @@ h3, .userLink {
 
 span {
     text-align: center;
-    font-size: 18px;
+    font-size: 14px;
     color: rgba(131,208,209,0.5)
 }
 .scrollText {
@@ -145,8 +146,8 @@ nav {
     align-items: center;
     justify-content: space-between;
     list-style: none;
-    font-size: 24px;
-    padding: 25px;
+    font-size: 18px;
+    padding: 15px;
     border: solid 5px hsl(181,46%,67%);
     border-left: none;
     border-right: none;
@@ -183,7 +184,7 @@ nav {
     border-bottom: solid 5px hsl(181,46%,67%);
     padding: 20px 0px;
     margin: 0;
-    font-size: 32px;
+    font-size: 24px;
     z-index: 10;
 }
 .menuOpenClose:hover {
@@ -216,7 +217,7 @@ textarea {
     height: 50px;
     width: 400px;
     font-family: 'retro_computerregular';
-    font-size: 24px;
+    font-size: 18px;
     opacity: 0.6;
 }
 input:hover,
@@ -254,7 +255,7 @@ h3, p {
 p {
     margin-top: 50px;
     line-height: 1.6em;
-    font-size: 20px;
+    font-size: 16px;
     
 }
 .profileP {
@@ -263,7 +264,7 @@ p {
 
 .delete {
     margin: 25px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 
@@ -286,7 +287,7 @@ p {
     border: none;
     width: 60%;
     font-family: 'retro_computerregular';
-    font-size: 24px;
+    font-size: 18px;
 }
 #blog-content {
     height: 60%;
@@ -307,7 +308,7 @@ p {
     width: 90%;
     max-width: 400px;
     font-family: 'retro_computerregular';
-    font-size: 24px;
+    font-size: 18px;
     background-color: rgb(57,38,136);
     color: hsl(181,46%,67%);
 }
@@ -334,7 +335,7 @@ p {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: calc(95vh - 93px);
+    height: calc(95vh - 66px);
 }
 
 .chat-inner-container {

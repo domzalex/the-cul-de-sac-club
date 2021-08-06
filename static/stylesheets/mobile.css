@@ -44,7 +44,7 @@
         justify-content: space-between;
         width: 100%;
         height: auto;
-        transform: translateY(70px);
+        transform: translateY(40px);
     }
     
     .post-container {
@@ -68,7 +68,7 @@
         overflow: visible;
         -ms-overflow-style: none;
         scrollbar-width: none;
-        padding: 50px 0px;
+        padding: 30px 0px;
         height: 70%;
         border: none;
     }
@@ -77,15 +77,15 @@
         display: none;
     }
     .otherText {
-        margin: 10px 0px 40px 10px;
+        margin: 0px 0px 40px 10px;
         padding: 0;
-        font-size: 18px;
+        font-size: 16px;
         color: rgba(131,208,209,0.5)
     }
     .stuffContainer a {
         display: inline-block;
         margin-left: 10px;
-        font-size: 24px;
+        font-size: 18px;
         margin-bottom: 12px;
         border: none;
     }
@@ -95,17 +95,17 @@
         margin: 80px 0px 10px 0px;
         text-align: center;
         width: 100%;
-        font-size: 28px;
+        font-size: 20px;
     }
     h2 {
         text-align: center;
         width: 100%;
         margin: auto;
-        margin-bottom: 25px;
+        margin-bottom: 10px;
     }
 
     a, .userName, .homeUserForm {
-        font-size: 28px;
+        font-size: 20px;
         color: hsl(181,46%,67%);
     }
     a:hover,
@@ -149,7 +149,7 @@
         align-items: center;
         justify-content: space-between;
         list-style: none;
-        font-size: 24px;
+        font-size: 18px;
         padding: 10px;
         border: none;
     }
@@ -165,7 +165,7 @@
         align-items: center;
         justify-content: center;
         list-style: none;
-        font-size: 24px;
+        font-size: 18px;
         padding: 0;
         z-index: 3;
         border: none;
@@ -182,10 +182,10 @@
         left: 50%;
         transform: translateX(-50%);
         border: none;
-        border-bottom: solid 5px hsl(181,46%,67%);
-        padding: 20px 0px;
+        border-bottom: solid 2px hsl(181,46%,67%);
+        padding: 10px 0px;
         margin: 0;
-        font-size: 32px;
+        font-size: 24px;
         z-index: 10;
     }
     .menuOpenClose:hover {
@@ -251,7 +251,7 @@
     .entry {
         padding-bottom: 50px;
         margin-bottom: 50px;
-        border-bottom: solid 5px hsl(181,46%,67%);
+        border-bottom: solid 2px hsl(181,46%,67%);
     }
 
     h3, p {
@@ -293,36 +293,53 @@
 
     .chat-container {
         position: fixed;
-        top: 80px;
+        top: 48px;
         overflow: scroll;
         border-top: none;
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: 80%;
+        height: calc(100% - 101px);
     }
     
     .chat-inner-container {
         position: absolute;
-        bottom: 75px;
+        bottom: 0px;
         width: 100%;
         height: 100%;
     }
+
+    .chat-messages {
+        height: 100%;
+        padding: 0;
+        border: none;
+    }
+
+    .message {
+        margin-bottom: 25px;
+        margin-top: 10px;
+    }
+
+    .meta {
+        margin: 0;
+    }
+
 
     #chat-form {
         display: flex;
         flex-direction: row;
         width: 100%;
         text-align: center;
-        height: 70px;
+        height: 50px;
         position: fixed;
         bottom: 0px;
         padding: 0px;
-        border-top: solid 5px hsl(181,46%,67%);
+        border-top: solid 2px hsl(181,46%,67%);
     }
 
     #chat-form input {
         width: 70%;
+        height: 40px;
         font-size: 18px;
         white-space: pre-wrap;
     }
@@ -330,7 +347,9 @@
     #chat-form button {
         font-size: 18px;
         width: 20%;
+        height: 40px;
         cursor: pointer;
+        border: solid 2px hsl(181,46%,67%);
     }
 
 }

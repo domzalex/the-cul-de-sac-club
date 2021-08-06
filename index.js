@@ -63,14 +63,14 @@ const chatBot = 'ChatBot';
 
 io.on('connection', socket => {
 
-    socket.emit('message', messageFormat(chatBot, 'Welcome ' + User.username + ' to the lounge...'));
+    socket.emit('message', messageFormat(chatBot, 'Welcome to the lounge...'));
     
     //for when user connects
-    socket.broadcast.emit('message', messageFormat(chatBot, 'A user has joined the lounge.'));
+    socket.broadcast.emit('message', messageFormat(chatBot, User.username + ' has joined the lounge.'));
 
     //for when user disconnects
     socket.on('disconnect', () => {
-        io.emit('message', messageFormat(chatBot, 'A user has left the lounge.'));
+        io.emit('message', messageFormat(chatBot, User.username + ' has left the lounge.'));
     });
 
     //listening for messages
