@@ -349,7 +349,7 @@ p {
 
 .chat-messages {
     border-top: solid 1px hsl(181,46%,67%);
-    padding-top: 50px;
+    padding: 50px 15px 0px 15px;
     height: calc(100% - 55px);
     overflow-y: scroll;
 }
