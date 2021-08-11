@@ -118,8 +118,7 @@ a:focus {
 }
 
 h3, .userLink {
-    font-size: 18px;
-    margin-bottom: 12px;
+    font-size: 16px;
     border: none;
 }
 .userLink {
@@ -132,8 +131,8 @@ h3, .userLink {
 
 span {
     text-align: center;
-    font-size: 14px;
-    color: rgba(131,208,209,0.5)
+    font-size: 12px;
+    color: rgba(131,208,209,0.3)
 }
 .scrollText {
     display: inline-block;
@@ -142,7 +141,7 @@ span {
 }
 
 ul {
-    margin-top: 70px;
+    margin-top: 0px;
     list-style: none;
 }
 
@@ -245,19 +244,13 @@ button:hover {
     color: rgb(57,38,136);
 }
 
-.entry {
-    padding: 25px 25px 50px 25px;
-    margin-bottom: 50px;
-    border-bottom: solid 1px hsl(181,46%,67%);
-}
-
 h3, p {
     letter-spacing: 1.5px;
 }
 p {
-    margin-top: 50px;
-    line-height: 1.6em;
-    font-size: 16px;
+    margin-top: 30px;
+    line-height: 1.8em;
+    font-size: 14px;
     
 }
 .profileP {
@@ -265,7 +258,7 @@ p {
 }
 
 .delete {
-    margin: 25px;
+    margin: 25px 0px 25px 0px;
     font-size: 18px;
 }
 
@@ -320,8 +313,8 @@ p {
 }
 
 .entry {
-    padding-bottom: 50px;
-    margin-bottom: 50px;
+    padding: 25px;
+    margin-bottom: 0px;
     border-bottom: solid 1px hsl(181,46%,67%);
 }
 
