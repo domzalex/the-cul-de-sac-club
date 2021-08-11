@@ -118,7 +118,6 @@ app.get("/otherStuff", (req, res) => {
 app.get("/chatRoom", isLoggedIn, (req, res) => {
     var user = req.user;
     res.render('chatRoom.ejs', { user: user.username });
-    console.log(user.username);
 }); 
 
 app.get('/guides', (req, res) => {
