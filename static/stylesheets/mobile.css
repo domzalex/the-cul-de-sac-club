@@ -250,13 +250,14 @@
     }
 
     .entry {
+        padding: 10px;
         padding-bottom: 50px;
         margin-bottom: 50px;
         border-bottom: solid 1px hsl(181,46%,67%);
     }
 
     h3, p {
-        padding: 0px 10px;
+        padding: 0px 0px;
     }
     p {
         line-height: 1.5em;
