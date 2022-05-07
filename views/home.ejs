@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="/static/stylesheets/main.css">
     <link rel="stylesheet" href="/static/stylesheets/mobile.css">
     <title>The Cul-De-Sac</title>
@@ -13,6 +15,7 @@
     
     <div class="main-container">
         <%- include('./nav'); -%>
+        <div class="scrollRef">scrollerref!</div>
         <div class="inner-container">
             <div class="postsContainer">
                 <h2>RECENT POSTS</h2>
@@ -21,7 +24,7 @@
                     <% blogEntry.forEach(details => { %>
                         <div class="entry">
                             <h3 class="title"><%= details.title %><span> by </span><form class="homeUserForm" action="/" method="POST"><button type="submit" name="username" value="<%= details.name %>" class="userLink"><%= details.name %></button></form><span> on <%= details.date %></span></h3>
-                            <p class="content"><%= details.content %></p>
+                            <p class="content">//<%= details.content %>//</p>
                         </div>
                     <% }) %>
                 </div>
@@ -32,15 +35,23 @@
                 <span class="scrollText">scroll for more</span>
                 <div class="stuffContainer">
                     <a href="mailto:admin@theculdesac.club">Contact</a>
-                    <p class="otherText">For comments, questions, concerns, etc.</p>
+                    <p class="otherText">//For comments, questions, concerns, etc.</p>
                     <a href="/chatRoom">Chat Room - EXPERIMENTAL</a>
-                    <p class="otherText">An experimental local chat room.</p>
+                    <p class="otherText">//An experimental local chat room.</p>
                     <a href="/guides">Guides/Articles</a>
-                    <p class="otherText">Video game guides, random articles, etc.</p>
+                    <p class="otherText">//Video game guides, random articles, etc.</p>
                 </div>
             </div>
         </div>
+        <div class="scroller"><div class="arrow up"></div></div>
     </div>
+    <script>
+        const scroller = document.querySelector('.scroller')
+        const ref = document.querySelector('.scrollRef')
+        scroller.onclick = () => {
+            ref.scrollIntoView();
+        }
+    </script>
     
 </body>
 </html> 

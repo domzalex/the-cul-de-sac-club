@@ -16,24 +16,23 @@
         font-weight: normal;
         font-style: normal;
     }
+    @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap');
 
 
     body {
-        background-color: rgb(57,38,136);
-        color: hsl(181,46%,67%);
-        font-family: 'retro_computerregular';
         padding: 0;
         overflow: hidden;
     }
     .main-container {
         border: none;
-        margin-top: 15px;
-        height: 98%;
+        margin-top: 0;
+        height: 100%;
         overflow-y: scroll;
         -ms-overflow-style: none;
         scrollbar-width: none;
         width: 100%;
         padding: 0px;
+        scroll-behavior: smooth;
     }
     .main-container::-webkit-scrollbar {
         display: none;
@@ -47,7 +46,40 @@
         height: auto;
         transform: translateY(40px);
     }
-    
+    .scroller {
+        display: inline-block;
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        background-color: rgb(60, 60, 60);
+        width: 50px;
+        height: 50px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-radius: 50px;
+        box-shadow: 0 0 10px rgb(27, 27, 27);
+        line-height: 50px;
+        text-align: center;
+        font-size: 2em;
+    }
+    .arrow {
+        border: solid rgb(106, 153, 85);;
+        border-width: 0 5px 5px 0;
+        display: inline-block;
+        padding: 5px;
+    }
+    .up {
+        transform: rotate(-135deg);
+        -webkit-transform: rotate(-135deg);
+    }
+    .scrollRef {
+        position: absolute;
+        top: 0;
+        display: inline-block;
+        opacity: 0;
+        pointer-events: none;
+        height: 36px;
+    }
     .post-container {
         -ms-overflow-style: none;
         scrollbar-width: none;
@@ -81,7 +113,7 @@
         margin: 0px 0px 40px 10px;
         padding: 0;
         font-size: 16px;
-        color: rgba(131,208,209,0.5)
+        color: rgb(79, 79, 79);
     }
     .stuffContainer a {
         display: inline-block;
@@ -89,6 +121,7 @@
         font-size: 18px;
         margin-bottom: 12px;
         border: none;
+        color: rgb(220, 220, 170);
     }
 
 
@@ -102,21 +135,21 @@
         text-align: center;
         width: 100%;
         margin: auto;
-        margin-bottom: 10px;
+        margin-bottom: 0px;
     }
 
     a, .userName, .homeUserForm {
         font-size: 20px;
-        color: hsl(181,46%,67%);
+        color: rgb(180, 180, 180);
     }
     a:hover,
     a:focus {
-        background-color: hsl(181,46%,67%);
-        color: rgb(57,38,136);
+        background-color: rgb(180, 180, 180);
+        color: rgb(32, 32, 32);
     }
 
     h3, .userLink {
-        font-size: 20px;
+        font-size: 18px;
         margin-bottom: 12px;
         border: none;
     }
@@ -127,11 +160,14 @@
         height: auto;
         cursor: pointer;
     }
+    .profile {
+        text-decoration: none;
+    }
 
     span {
         text-align: center;
-        font-size: 16px;
-        color: rgba(131,208,209,0.5)
+        font-size: 12px;
+        color: rgb(79, 79, 79);
     }
     .scrollText {
         display: inline-block;
@@ -150,12 +186,10 @@
         align-items: center;
         justify-content: space-between;
         list-style: none;
-        font-size: 18px;
-        padding: 10px;
         border: none;
     }
     .navMobile {
-        background-color: rgb(57,38,136);
+        background-color: rgb(32, 32, 32);
         position: fixed;
         top: 0px;
         left: 0px;
@@ -166,15 +200,17 @@
         align-items: center;
         justify-content: center;
         list-style: none;
-        font-size: 18px;
         padding: 0;
         z-index: 3;
         border: none;
     }
     .navMobile a {
+        color: rgb(220, 220, 170);
         margin: 10px 0px;
     }
     .menuOpenClose {
+        color: rgb(220, 220, 170);
+        background-color: rgb(30, 30, 30);
         display: inline-block;
         width: 100vw;
         height: auto;
@@ -183,15 +219,15 @@
         left: 50%;
         transform: translateX(-50%);
         border: none;
-        border-bottom: solid 1px hsl(181,46%,67%);
-        padding: 10px 0px;
+        border-bottom: solid 1px rgb(60, 60, 60);
+        padding: 5px 0px;
         margin: 0;
-        font-size: 24px;
+        font-size: 20px;
         z-index: 10;
     }
     .menuOpenClose:hover {
-        background-color: rgb(57,38,136);
-        color: hsl(181,46%,67%);
+        background-color: rgb(30, 30, 30);
+        color: rgb(180, 180, 180);
         text-decoration: underline;
         cursor: pointer;
     }
@@ -213,14 +249,13 @@
 
     input,
     textarea {
-        background-color: hsl(181,46%,67%);
-        color: rgb(57,38,136);
+        background-color: rgb(180, 180, 180);
+        color: rgb(32, 32, 32);
         margin: 10px;
         border: none;
         border-radius: 0px;
         height: 50px;
         width: 90%;
-        font-family: 'retro_computerregular';
         font-size: 24px;
         opacity: 0.6;
     }
@@ -231,38 +266,41 @@
     textarea:hover {
         opacity: 1;
     }
-    ::placeholder {
-        font-family: 'retro_computerregular';
-    }
     button {
         margin: 10px;
-        border: solid 5px hsl(181,46%,67%);
+        border: solid 5px rgb(60, 60, 60);
         height: 50px;
         width: 90%;
-        font-family: 'retro_computerregular';
         font-size: 24px;
-        background-color: rgb(57,38,136);
-        color: hsl(181,46%,67%);
+        background-color: rgb(32, 32, 32);
+        color: rgb(180, 180, 180);
     }
     button:hover {
-        background-color: hsl(181,46%,67%);
-        color: rgb(57,38,136);
+        background-color: rgb(180, 180, 180);
+        color: rgb(32, 32, 32);
     }
 
     .entry {
         padding: 10px;
-        padding-bottom: 50px;
-        margin-bottom: 50px;
-        border-bottom: solid 1px hsl(181,46%,67%);
+        padding-top: 0px;
+        padding-bottom: 30px;
+        margin-bottom: 30px;
+        border-bottom: solid 1px rgb(60, 60, 60);
+    }
+    .entry:last-child {
+        margin-bottom: 100px;
+    }
+    .title {
+        font-size: 18px;
     }
 
     h3, p {
         padding: 0px 0px;
     }
     p {
-        line-height: 1.5em;
-        font-size: 16px;
-        letter-spacing: 1.5px;
+        line-height: normal;
+        font-size: 14px;
+        letter-spacing:normal;
     }
     .profileP {
         margin-bottom: 25px;
@@ -284,24 +322,27 @@
 
     #blog-title,
     #blog-content {
-        background-color: hsl(181,46%,67%);
-        color: rgb(57,38,136);
+        background-color: rgb(180, 180, 180);
+        color: rgb(32, 32, 32);
         margin: 10px;
+        padding: 5px;
         border: none;
         width: 90%;
-        font-family: 'retro_computerregular';
-        font-size: 24px;
+        font-size: 18px;
+    }
+    #blog-title {
+        height: auto;
     }
 
     .chat-container {
         position: fixed;
-        top: 48px;
-        overflow: scroll;
+        top: 36px;
+        overflow: hidden;
         border-top: none;
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: calc(100% - 101px);
+        height: calc(100% - 86px);
     }
     
     .chat-inner-container {
@@ -313,17 +354,31 @@
 
     .chat-messages {
         height: 100%;
+        margin: 0;
         padding: 0;
         border: none;
+        overflow-y: scroll;
+        transition: 0.25s ease-in-out;
+    }
+    .kbactive {
+        position: sticky;
+        top: 40vh;
+        height: 40vh;
+        width: 100vw;
+        transition: 0.25s ease-in-out;
     }
 
     .message {
-        margin-bottom: 25px;
-        margin-top: 10px;
+        padding: 15px 0px;
+    }
+    .message:nth-child(even) {
+        background-color: rgb(30, 30, 30);
     }
 
-    .meta {
+    .meta, .meta span, .text {
         margin: 0;
+        padding: 0 10px;
+        font-size: 12px;
     }
 
 
@@ -336,22 +391,27 @@
         position: fixed;
         bottom: 0px;
         padding: 0px;
-        border-top: solid 1px hsl(181,46%,67%);
+        border-top: solid 1px rgb(60, 60, 60);
     }
 
     #chat-form input {
+        background-color: rgb(79, 79, 79);
         width: 70%;
-        height: 40px;
-        font-size: 18px;
+        height: 30px;
+        font-size: 12px;
+        padding: 0px 10px;
+        margin-right: 5px;
         white-space: pre-wrap;
+        color:rgb(180, 180, 180);
     }
     
     #chat-form button {
-        font-size: 18px;
+        font-size: 12px;
         width: 20%;
-        height: 40px;
+        height: 30px;
+        margin-left: 5px;
         cursor: pointer;
-        border: solid 1px hsl(181,46%,67%);
+        border: solid 1px rgb(60, 60, 60);
     }
 
 }

@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="/static/stylesheets/main.css">
     <link rel="stylesheet" href="/static/stylesheets/mobile.css">
     <title>Chatroom || The Cul-De-Sac</title>
 </head>
-<body>
+<body id="body">
     <div class="main-container">
         <%- include('./nav'); -%>
         <div class="chat-container">
@@ -19,6 +21,14 @@
                 </div>
             </div>
             <form id="chat-form">
+                <input
+                    style="display: none"
+                    id="username"
+                    type="text"
+                    value="<%= user%>"
+                    required
+                    autocomplete="off"
+                ></input>
                 <input
                     id="message"
                     type="text"
@@ -32,7 +42,19 @@
         
     </div>
     
-
+    <script>
+        const nav = document.querySelector('#nav')
+        const form = document.querySelector('#message')
+        const chat = document.querySelector('.chat-messages')
+        form.onfocus = function() {
+            if (!chat.classList.contains('kbactive')) {
+                chat.classList.add('kbactive')
+            }
+        }
+        form.onblur = function() {
+            chat.classList.remove('kbactive')
+        }
+    </script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/static/js/main.js"></script>
 </body>
