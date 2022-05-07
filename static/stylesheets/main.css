@@ -161,13 +161,8 @@ nav {
     justify-content: space-between;
     list-style: none;
     font-size: 18px;
-<<<<<<< HEAD
     padding: 15px;
     border-bottom: solid 1px rgb(60, 60, 60);
-=======
-    padding: 15px 25px;
-    border-bottom: solid 1px hsl(181,46%,67%);
->>>>>>> a3a808d862ca13cb1f7f583456fbf49dd9e80a61
 }
 .navMobile {
     background-color: rgb(32, 32, 32);
