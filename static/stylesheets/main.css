@@ -2,18 +2,24 @@
     padding: 0;
     margin: 0;
 }
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap');
+
 
 @font-face {
-    font-family: 'retro_computerregular';
+    font-family: 'Inconsolata', monospace;
     src: url('../retro_computer_personal_use-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
+/* rgb(57,38,136) */
+/* hsl(181,46%,67%) */
+
 body {
-    background-color: rgb(57,38,136);
-    color: hsl(181,46%,67%);
-    font-family: 'retro_computerregular';
+    background-color: rgb(32, 32, 32);
+    color: rgb(106, 153, 85);
+    font-family: 'Syne Mono', monospace;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,14 +45,19 @@ body {
     width: 100%;
     height: calc(100% - 80px);
 }
-
+.scroller {
+    display: none;
+}
+.scrollRef {
+    display: none;
+}
 .postsContainer {
     width: 67%;
 }
 
 .post-container {
-    height: 100%;
-    overflow: scroll;
+    height: calc(100vh - 56px);
+    overflow-y: scroll;
 }
 
 .otherContainer {
@@ -57,7 +68,7 @@ body {
     margin: 0px 0px 40px 0px;
     padding: 0;
     font-size: 14px;
-    color: rgba(131,208,209,0.5)
+    color: rgb(108, 108, 108)
 }
 .stuffContainer a {
     display: inline-block;
@@ -72,12 +83,9 @@ body {
 .recentPosts,
 .stuffContainer {
     position: relative;
-    overflow: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
     margin-top: 15px;
-    height: 100%;
-    border-top: solid 1px hsl(181,46%,67%);
+    height: calc(100% - 60px);
+    border-top: solid 1px rgb(60, 60, 60);;
 }
 
 .stuffContainer {
@@ -85,12 +93,8 @@ body {
 }
 
 .recentPosts {
-    border-right: solid 1px hsl(181,46%,67%);
-}
-
-.recentPosts::-webkit-scrollbar,
-.stuffContainer::-webkit-scrollbar {
-    display: none;
+    overflow-y: scroll;
+    border-right: solid 1px rgb(60, 60, 60);;
 }
 
 
@@ -110,17 +114,18 @@ h2 {
 
 a, .userName, .homeUserForm {
     font-size: 24px;
-    color: hsl(181,46%,67%);
+    color: rgb(220, 220, 170);
 }
 a:hover,
 a:focus {
-    background-color: hsl(181,46%,67%);
-    color: rgb(57,38,136);
+    background-color: rgb(180, 180, 180);;
+    color: rgb(32, 32, 32);
 }
 
 h3, .userLink {
-    font-size: 16px;
+    font-size: 20px;
     border: none;
+    color: rgb(79, 192, 253);
 }
 .userLink {
     width: auto;
@@ -128,12 +133,16 @@ h3, .userLink {
     margin: auto;
     height: auto;
     cursor: pointer;
+    color: rgb(220, 220, 170);
+}
+.profile {
+    text-decoration: none;
 }
 
 span {
     text-align: center;
     font-size: 12px;
-    color: rgba(131,208,209,0.3)
+    color: rgb(108, 108, 108);
 }
 .scrollText {
     display: inline-block;
@@ -152,11 +161,11 @@ nav {
     justify-content: space-between;
     list-style: none;
     font-size: 18px;
-    padding: 15px 25px;
-    border-bottom: solid 1px hsl(181,46%,67%);
+    padding: 15px;
+    border-bottom: solid 1px rgb(60, 60, 60);
 }
 .navMobile {
-    background-color: rgb(57,38,136);
+    background-color: rgb(32, 32, 32);
     position: fixed;
     top: 0px;
     left: 0px;
@@ -176,6 +185,7 @@ nav {
     margin: 10px 0px;
 }
 .menuOpenClose {
+    color: rgb(220, 220, 170);
     display: none;
     width: 100vw;
     height: auto;
@@ -184,15 +194,15 @@ nav {
     left: 50%;
     transform: translateX(-50%);
     border: none;
-    border-bottom: solid 1px hsl(181,46%,67%);
+    border-top: solid 1px rgb(60, 60, 60);;
     padding: 20px 0px;
     margin: 0;
     font-size: 24px;
     z-index: 10;
 }
 .menuOpenClose:hover {
-    background-color: rgb(57,38,136);
-    color: hsl(181,46%,67%);
+    background-color: rgb(32, 32, 32);
+    color: rgb(180, 180, 180);;
     text-decoration: underline;
     cursor: pointer;
 }
@@ -213,13 +223,13 @@ form {
 
 input,
 textarea {
-    background-color: hsl(181,46%,67%);
-    color: rgb(57,38,136);
+    background-color: rgb(180, 180, 180);;
+    color: rgb(32, 32, 32);
     margin: 10px;
     border: none;
     height: 50px;
     width: 400px;
-    font-family: 'retro_computerregular';
+    font-family: 'Syne Mono', monospace;
     font-size: 18px;
     opacity: 0.6;
 }
@@ -228,30 +238,30 @@ textarea:hover {
     opacity: 1;
 }
 ::placeholder {
-    font-family: 'retro_computerregular';
+    font-family: 'Syne Mono', monospace;
 }
 button {
     margin: 10px;
-    border: solid 1px hsl(181,46%,67%);
+    border: solid 1px rgb(60, 60, 60);;
     height: 50px;
     width: 400px;
-    font-family: 'retro_computerregular';
+    font-family: 'Syne Mono', monospace;
     font-size: 24px;
-    background-color: rgb(57,38,136);
-    color: hsl(181,46%,67%);
+    background-color: rgb(32, 32, 32);
+    color: rgb(180, 180, 180);;
 }
 button:hover {
-    background-color: hsl(181,46%,67%);
-    color: rgb(57,38,136);
+    background-color: rgb(180, 180, 180);;
+    color: rgb(32, 32, 32);
 }
 
 h3, p {
-    letter-spacing: 1.5px;
+    letter-spacing: normal;
 }
 p {
     margin-top: 30px;
     line-height: 1.8em;
-    font-size: 14px;
+    font-size: 16px;
     
 }
 .profileP {
@@ -277,12 +287,12 @@ p {
 
 #blog-title,
 #blog-content {
-    background-color: hsl(181,46%,67%);
-    color: rgb(57,38,136);
+    background-color: rgb(180, 180, 180);;
+    color: rgb(32, 32, 32);
     margin: 10px;
     border: none;
     width: 60%;
-    font-family: 'retro_computerregular';
+    font-family: 'Syne Mono', monospace;
     font-size: 18px;
 }
 #blog-content {
@@ -295,28 +305,28 @@ p {
 
 
 ::placeholder {
-    font-family: 'retro_computerregular';
+    font-family: 'Syne Mono', monospace;
 }
 #blog-submit {
     margin: 10px;
-    border: solid 1px hsl(181,46%,67%);
+    border: solid 1px rgb(60, 60, 60);
     height: 50px;
     width: 90%;
     max-width: 400px;
-    font-family: 'retro_computerregular';
+    font-family: 'Syne Mono', monospace;
     font-size: 18px;
-    background-color: rgb(57,38,136);
-    color: hsl(181,46%,67%);
+    background-color: rgb(32, 32, 32);
+    color: rgb(180, 180, 180);
 }
 #blog-submit:hover {
-    background-color: hsl(181,46%,67%);
-    color: rgb(57,38,136);
+    background-color: rgb(180, 180, 180);;
+    color: rgb(32, 32, 32);
 }
 
 .entry {
-    padding: 25px;
+    padding: 25px 10px;
     margin-bottom: 0px;
-    border-bottom: solid 1px hsl(181,46%,67%);
+    border-bottom: solid 1px rgb(60, 60, 60);
 }
 
 
@@ -331,7 +341,7 @@ p {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: calc(100vh - 56px);
+    height: calc(100vh - 61px);
 }
 
 .chat-inner-container {
@@ -342,12 +352,13 @@ p {
 }
 
 .chat-messages {
-    border-top: solid 1px hsl(181,46%,67%);
-    padding: 50px 15px 0px 15px;
-    height: calc(100% - 55px);
+    margin-top: 66px;
+    height: calc(100% - 68px);
     overflow-y: scroll;
 }
-
+.kbactive {
+    opacity: 1;
+}
 #chat-form {
     display: flex;
     flex-direction: row;
@@ -357,7 +368,13 @@ p {
     position: absolute;
     bottom: 0px;
     padding: 0px;
-    border-top: solid 1px hsl(181,46%,67%);
+    border-top: solid 1px rgb(60, 60, 60);
+}
+.message {
+    padding: 10px 10px;
+}
+.message:nth-child(even) {
+    background-color: rgb(30, 30, 30);
 }
 
 #chat-form input {
@@ -370,10 +387,10 @@ p {
     cursor: pointer;
 }
 
-.text {
+.text, .meta {
     margin: 0;
+    font-size: 18px;
 }
-
 .meta {
-    margin-top: 35px;
+    color: rgb(220, 220, 170);
 }

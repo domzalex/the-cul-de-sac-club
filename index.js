@@ -66,16 +66,16 @@ io.on('connection', socket => {
     socket.emit('message', messageFormat(chatBot, 'Welcome to the lounge...'));
     
     //for when user connects
-    socket.broadcast.emit('message', messageFormat(chatBot, User.username + ' has joined the lounge.'));
+    socket.broadcast.emit('message', messageFormat(chatBot, 'a user has joined the lounge.'));
 
     //for when user disconnects
     socket.on('disconnect', () => {
-        io.emit('message', messageFormat(chatBot, User.username + ' has left the lounge.'));
+        io.emit('message', messageFormat(chatBot, 'a user has left the lounge.'));
     });
 
     //listening for messages
-    socket.on('chatMessage', message => {
-        io.emit('message', messageFormat(User.username, message));
+    socket.on('chatMessage', (user, message) => {
+        io.emit('message', messageFormat(user, message));
     });
     
 });

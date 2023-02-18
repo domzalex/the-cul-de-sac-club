@@ -4,11 +4,13 @@
         
         if (toggle == 0) {
             document.querySelector('.menuOpenClose').innerHTML = 'CLOSE';
+            document.querySelector('.menuOpenClose').style.color = 'rgb(220, 220, 170)';
             document.querySelector('.navMobile').style.display = 'flex';
             document.querySelector('body').style.position = 'fixed';
             toggle = 1;
         } else if (toggle == 1) {
             document.querySelector('.menuOpenClose').innerHTML = 'MENU';
+            document.querySelector('.menuOpenClose').style.color = 'rgb(220, 220, 170)';
             document.querySelector('.navMobile').style.display = 'none';
             document.querySelector('body').style.position = '';
             toggle = 0;
@@ -19,7 +21,7 @@
     };
 </script>
 <button onclick="toggleMenu()" class="menuOpenClose">MENU</button>
-<nav class="navMobile">
+<nav id="nav" class="navMobile">
     <a href="/">HOME</a>
     <a href="/userProfile">PROFILE</a>
     <a href="/login">LOGIN</a>
@@ -27,7 +29,7 @@
     <a href="/register">REGISTER</a>
     <a href="/otherStuff">OTHER STUFF</a>
 </nav>
-<nav>
+<nav id="nav">
     <a href="/">HOME</a>
     <a href="/userProfile">PROFILE</a>
     <a href="/login">LOGIN</a>

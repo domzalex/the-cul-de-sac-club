@@ -14,10 +14,11 @@ chatForm.addEventListener('submit', e => {
     e.preventDefault();
 
     //get message from DOM
+    const user = e.target.elements.username.value;
     const message = e.target.elements.message.value;
 
     //showing message to server
-    socket.emit('chatMessage', message);
+    socket.emit('chatMessage', user, message);
 
     // clearing input
     e.target.elements.message.value = '';
