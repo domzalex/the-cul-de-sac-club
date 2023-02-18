@@ -4,7 +4,7 @@
   "description": "A place for the boys.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js & node factoid-app.js"
+    "start": "nodemon index.js & node factoid-app.js"
   },
   "repository": {
     "type": "git",

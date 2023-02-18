@@ -9,15 +9,6 @@
         padding: 0;
     }
 
-    @font-face {
-        font-family: 'retro_computerregular';
-        src: url('../retro_computer_personal_use-webfont.woff2') format('woff2'),
-            url('../retro_computer_personal_use-webfont.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-    }
-    @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&display=swap');
-
 
     body {
         padding: 0;
@@ -88,12 +79,17 @@
         display: none;
     }
 
+    .postsContainer {
+        padding-top: 15px;
+    }
+
     .postsContainer,
     .otherContainer {
         width: 100%;
     }
     .otherContainer {
         display: none;
+        padding-top: 15px;
     }
 
     .recentPosts,
@@ -119,7 +115,7 @@
         display: inline-block;
         margin-left: 10px;
         font-size: 18px;
-        margin-bottom: 12px;
+        margin-bottom: 0px;
         border: none;
         color: rgb(220, 220, 170);
     }
@@ -210,7 +206,7 @@
     }
     .menuOpenClose {
         color: rgb(220, 220, 170);
-        background-color: rgb(30, 30, 30);
+        background-color: rgb(32, 32, 32);
         display: inline-block;
         width: 100vw;
         height: auto;
@@ -226,7 +222,6 @@
         z-index: 10;
     }
     .menuOpenClose:hover {
-        background-color: rgb(30, 30, 30);
         color: rgb(180, 180, 180);
         text-decoration: underline;
         cursor: pointer;
@@ -281,14 +276,11 @@
     }
 
     .entry {
-        padding: 10px;
-        padding-top: 0px;
-        padding-bottom: 30px;
-        margin-bottom: 30px;
+        padding: 30px 10px;
         border-bottom: solid 1px rgb(60, 60, 60);
     }
     .entry:last-child {
-        margin-bottom: 100px;
+        margin-bottom: 0px;
     }
     .title {
         font-size: 18px;

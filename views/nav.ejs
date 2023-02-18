@@ -3,13 +3,13 @@
     function toggleMenu() {
         
         if (toggle == 0) {
-            document.querySelector('.menuOpenClose').innerHTML = 'CLOSE';
+            document.querySelector('.menuOpenClose').innerHTML = 'close';
             document.querySelector('.menuOpenClose').style.color = 'rgb(220, 220, 170)';
             document.querySelector('.navMobile').style.display = 'flex';
             document.querySelector('body').style.position = 'fixed';
             toggle = 1;
         } else if (toggle == 1) {
-            document.querySelector('.menuOpenClose').innerHTML = 'MENU';
+            document.querySelector('.menuOpenClose').innerHTML = 'menu';
             document.querySelector('.menuOpenClose').style.color = 'rgb(220, 220, 170)';
             document.querySelector('.navMobile').style.display = 'none';
             document.querySelector('body').style.position = '';
@@ -20,20 +20,20 @@
         
     };
 </script>
-<button onclick="toggleMenu()" class="menuOpenClose">MENU</button>
+<button onclick="toggleMenu()" class="menuOpenClose">menu</button>
 <nav id="nav" class="navMobile">
-    <a href="/">HOME</a>
-    <a href="/userProfile">PROFILE</a>
-    <a href="/login">LOGIN</a>
-    <a href="/logout">LOGOUT</a>
-    <a href="/register">REGISTER</a>
-    <a href="/otherStuff">OTHER STUFF</a>
+    <a href="/">home</a>
+    <a href="/userProfile">profile</a>
+    <a href="/login">login</a>
+    <a href="/logout">logout</a>
+    <a href="/register">register</a>
+    <a href="/otherStuff">other stuff</a>
 </nav>
 <nav id="nav">
-    <a href="/">HOME</a>
-    <a href="/userProfile">PROFILE</a>
-    <a href="/login">LOGIN</a>
-    <a href="/logout">LOGOUT</a>
-    <a href="/register">REGISTER</a>
+    <a href="/">home</a>
+    <a href="/userProfile">profile</a>
+    <a href="/login">login</a>
+    <a href="/logout">logout</a>
+    <a href="/register">register</a>
 </nav>
 
