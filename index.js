@@ -39,7 +39,7 @@ mongoose.set('useFindAndModify', false);
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
     console.log('DB connected.');
     //init server
-    server.listen(3000, () => console.log('Server running.'));
+    server.listen(8080, () => console.log('Server running.'));
 });
 
 
