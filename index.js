@@ -39,7 +39,7 @@ mongoose.set('useFindAndModify', false);
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
     console.log('DB connected.');
     //init server
-    server.listen(8080, () => console.log('Server running.'));
+    server.listen(3000, () => console.log('Server running.'));
 });
 
 
@@ -119,6 +119,14 @@ app.get("/chatRoom", isLoggedIn, (req, res) => {
     var user = req.user;
     res.render('chatRoom.ejs', { user: user.username });
 }); 
+
+app.get('/games', (req, res) => {
+    res.render('games.ejs');
+});
+
+app.get('/cookieClicker', (req, res) => {
+    res.render('cookieClicker.ejs');
+});
 
 app.get('/guides', (req, res) => {
     res.render('guides.ejs');

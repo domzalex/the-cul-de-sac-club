@@ -1,0 +1,392 @@
+<script>
+
+    const cookie = document.querySelector('#cookie')
+    const cookieAmountDiv = document.querySelector('.cookieAmount')
+    const cookiePerSecondDiv = document.querySelector('.perSecond')
+    const clickIndicator = document.querySelector('.clickIndicator')
+
+    const upgradeContainer = document.querySelector('.upgrades')
+    const modifierContainer = document.querySelector('.modifiers')
+
+    let totalCookies = 0
+    let cookieAmount = 0
+    let perClick = 1
+    let perClickMod = 1
+    let perSecond = 0
+
+
+    function Upgrade(name, cost, amount, cookiesAdded) {
+        this.name = name
+        this.cost = cost
+        this.amount = amount
+        this.cookiesAdded = cookiesAdded
+    }
+
+    let clicker = new Upgrade('clicker', 100, 0, 1)
+    let grandma = new Upgrade('grandma', 4000, 0, 20)
+    let cave = new Upgrade('cave', 13000, 0, 100)
+    let factory = new Upgrade('factory', 70000, 0, 400)
+    let temple = new Upgrade('temple', 300000, 0, 1000)
+
+
+
+
+    function Modifier(name, cost, modifies, multiplier, icon, text, used) {
+        this.name = name
+        this.cost = cost
+        this.modifies = modifies
+        this.multiplier = multiplier
+        this.icon = icon
+        this.text = text
+        this.used = used
+    }
+
+    let dblClick1 = new Modifier('dblClick1', 10000, perClick, 2, 'Cl1', 'Doubles the amount of cookies gained per-click', false)
+    let dblClick2 = new Modifier('dblClick2', 100000, perClick, 2, 'Cl2', 'Doubles the amount of cookies gained per-click', false)
+    let dblGrandma1 = new Modifier('dblGrandma1', 20000, grandma, 2, 'G1', 'Doubles the amount of cookies each grandma produces', false)
+    let dblCave1 = new Modifier('dblCave1', 50000, cave, 2, 'Ca1', 'Doubles the amount of cookies each cave produces', false)
+    let dblFactory1 = new Modifier('dblFactory1', 300000, factory, 2, 'F1', 'Doubles the amount of cookies each factory produces', false)
+    let dblTemple1 = new Modifier('dblTemple1', 1500000, temple, 2, 'T1', 'Doubles the amount of cookies each temple produces', false)
+
+
+    function updateDOM() {
+        cookieAmountDiv.innerHTML = `${cookieAmount} cookies`
+        perSecond = ((clicker.cookiesAdded * clicker.amount) + (grandma.cookiesAdded * grandma.amount) + (cave.cookiesAdded * cave.amount) + (factory.cookiesAdded * factory.amount) + (temple.cookiesAdded * temple.amount))
+        cookiePerSecondDiv.innerHTML = `${perSecond} cookies per second`
+        upgrades.forEach((e) => {
+            document.querySelector(`.${e.name}Amount`).innerHTML = e.amount
+            document.querySelector(`#${e.name}Cost`).innerHTML = `${e.cost} cookies`
+        })
+    }
+
+    let upgrades = [clicker, grandma, cave, factory, temple]
+    let modifiers = [dblClick1, dblGrandma1, dblCave1, dblFactory1, dblClick2, dblTemple1]
+
+    window.onload = function() {
+        if (localStorage.getItem('cookieAmount')) {
+            clicker = JSON.parse(localStorage.getItem('clicker'))
+            grandma = JSON.parse(localStorage.getItem('grandma'))
+            cave = JSON.parse(localStorage.getItem('cave'))
+            factory = JSON.parse(localStorage.getItem('factory'))
+            temple = JSON.parse(localStorage.getItem('temple'))
+
+            dblClick1 = JSON.parse(localStorage.getItem('dblClick1'))
+            dblClick2 = JSON.parse(localStorage.getItem('dblClick2'))
+            dblGrandma1 = JSON.parse(localStorage.getItem('dblGrandma1'))
+            dblCave1 = JSON.parse(localStorage.getItem('dblCave1'))
+            dblFactory1 = JSON.parse(localStorage.getItem('dblFactory1'))
+            dblTemple1 = JSON.parse(localStorage.getItem('dblTemple1'))
+
+            totalCookies = parseInt(localStorage.getItem('totalCookies'))
+            cookieAmount = parseInt(localStorage.getItem('cookieAmount'))
+            perClick = parseInt(localStorage.getItem('perClick'))
+            perClickMod = parseInt(localStorage.getItem('perClickMod'))
+            perSecond = parseInt(localStorage.getItem('perSecond'))
+
+            upgrades = [clicker, grandma, cave, factory, temple]
+            modifiers = JSON.parse(localStorage.getItem('modifiers'))
+
+        }
+        updateDOM()
+    }
+
+    document.querySelector('.saveGame').addEventListener('click', () => {
+        localStorage.setItem('clicker', JSON.stringify(clicker))
+        localStorage.setItem('grandma', JSON.stringify(grandma))
+        localStorage.setItem('cave', JSON.stringify(cave))
+        localStorage.setItem('factory', JSON.stringify(factory))
+        localStorage.setItem('temple', JSON.stringify(temple))
+
+        localStorage.setItem('dblClick1', JSON.stringify(dblClick1))
+        localStorage.setItem('dblClick2', JSON.stringify(dblClick2))
+        localStorage.setItem('dblGrandma1', JSON.stringify(dblGrandma1))
+        localStorage.setItem('dblCave1', JSON.stringify(dblCave1))
+        localStorage.setItem('dblFactory1', JSON.stringify(dblFactory1))
+        localStorage.setItem('dblTemple1', JSON.stringify(dblTemple1))
+
+        localStorage.setItem('totalCookies', totalCookies.toString())
+        localStorage.setItem('cookieAmount', Math.floor(cookieAmount).toString())
+        localStorage.setItem('perClick', perClick.toString())
+        localStorage.setItem('perClickMod', perClickMod.toString())
+        localStorage.setItem('perSecond', perSecond.toString())
+
+        localStorage.setItem('modifiers', JSON.stringify(modifiers))
+
+    })
+
+    upgrades.forEach((upgradeInst) => {
+        const div = document.createElement('div')
+        div.className = 'upgradeDiv'
+
+        const upAmount = document.createElement('div')
+        upAmount.className = `${upgradeInst.name}Amount amountLabel`
+        upAmount.innerHTML = upgradeInst.amount
+        div.appendChild(upAmount)
+
+        const upButton = document.createElement('div')
+        upButton.setAttribute('id', upgradeInst.name)
+        upButton.className = 'button'
+        upButton.innerHTML = upgradeInst.name[0].toUpperCase() + upgradeInst.name.slice(1)
+        div.appendChild(upButton)
+
+        const upCost = document.createElement('label')
+        upCost.setAttribute('id', `${upgradeInst.name}Cost`)
+        upCost.setAttribute('for', upgradeInst.name)
+        upCost.innerHTML = `${upgradeInst.cost} cookies`
+        div.appendChild(upCost)
+
+        const upTooltip = document.createElement('tooltip')
+        upTooltip.className = `toolTip ${upgradeInst.name}Tip`
+        upTooltip.innerHTML = `Generating ${upgradeInst.cookiesAdded * upgradeInst.amount} cookies per second`
+        div.appendChild(upTooltip)
+
+        upgradeContainer.appendChild(div)
+    })
+
+    console.log(modifiers)
+    console.log(dblClick1.used)
+    modifiers.forEach((mod) => {
+        const div = document.createElement('div')
+        div.setAttribute('id', mod.name)
+        div.className = `modifierDiv ${mod.name}`
+        div.innerHTML = mod.icon
+        modifierContainer.appendChild(div)
+    })
+
+
+
+
+
+
+
+    cookie.addEventListener('click', (e) => {
+        cookieAmount += perClick
+        clickIndicator.className = 'clickIndicatorActive'
+        setTimeout(() => {
+            clickIndicator.className = 'clickIndicator'
+        }, 100)
+        clickIndicator.innerHTML = `+${perClick} cookies`
+        clickIndicator.style.top = `${e.clientY - (clickIndicator.offsetHeight / 0.5 + (Math.random() * 10))}px`
+        clickIndicator.style.left = `${e.clientX - (clickIndicator.offsetWidth / 2.1 + (Math.random() * 10))}px `
+        cookieAmountDiv.innerHTML = `${Math.floor(cookieAmount)} cookies`
+    })
+
+    setInterval(() => {
+        perSecond = ((clicker.cookiesAdded * clicker.amount) + (grandma.cookiesAdded * grandma.amount) + (cave.cookiesAdded * cave.amount) + (factory.cookiesAdded * factory.amount) + (temple.cookiesAdded * temple.amount))
+        cookieAmount += perSecond / 100
+        totalCookies += perSecond / 100
+        cookieAmountDiv.innerHTML = `${Math.floor(cookieAmount)} cookies`
+    }, 10)
+
+    setInterval(() => {
+        upgrades.forEach((e) => {
+            if (e.cost > cookieAmount) {
+                document.querySelector(`#${e.name}`).parentElement.style.opacity = 0.3
+                document.querySelector(`#${e.name}`).parentElement.className = 'upgradeDiv disabled'
+            } else {
+                document.querySelector(`#${e.name}`).parentElement.style.opacity = 1
+                document.querySelector(`#${e.name}`).parentElement.className = 'upgradeDiv'
+            }
+        })
+        modifiers.forEach((e) => {
+            if (e.cost > cookieAmount) {
+                document.querySelector(`.${e.name}`).style.opacity = 0.3
+                document.querySelector(`.${e.name}`).className = `modifierDiv ${e.name} disabled`
+            } else {
+                document.querySelector(`.${e.name}`).style.opacity = 1
+                document.querySelector(`.${e.name}`).className = `modifierDiv ${e.name}`
+            }
+        })
+    }, 200)
+
+
+
+
+
+
+    //getting lazy, there is a better way to handle this; should implement later
+    document.querySelector('.dblClick1').addEventListener('mouseover', () => {
+        document.querySelector('.infoBox').innerHTML = `${dblClick1.text}<br>Cost: ${dblClick1.cost}`
+    })
+    document.querySelector('.dblClick2').addEventListener('mouseover', () => {
+        document.querySelector('.infoBox').innerHTML = `${dblClick2.text}<br>Cost: ${dblClick2.cost}`
+    })
+    document.querySelector('.dblGrandma1').addEventListener('mouseover', () => {
+        document.querySelector('.infoBox').innerHTML = `${dblGrandma1.text}<br>Cost: ${dblGrandma1.cost}`
+    })
+    document.querySelector('.dblCave1').addEventListener('mouseover', () => {
+        document.querySelector('.infoBox').innerHTML = `${dblCave1.text}<br>Cost: ${dblCave1.cost}`
+    })
+    document.querySelector('.dblFactory1').addEventListener('mouseover', () => {
+        document.querySelector('.infoBox').innerHTML = `${dblFactory1.text}<br>Cost: ${dblFactory1.cost}`
+    })
+    document.querySelector('.dblTemple1').addEventListener('mouseover', () => {
+        document.querySelector('.infoBox').innerHTML = `${dblTemple1.text}<br>Cost: ${dblTemple1.cost}`
+    })
+
+    document.querySelector('.dblClick1').addEventListener('mouseout', () => {
+        document.querySelector('.infoBox').innerHTML = ''
+    })
+    document.querySelector('.dblClick2').addEventListener('mouseout', () => {
+        document.querySelector('.infoBox').innerHTML = ''
+    })
+    document.querySelector('.dblGrandma1').addEventListener('mouseout', () => {
+        document.querySelector('.infoBox').innerHTML = ''
+    })
+    document.querySelector('.dblCave1').addEventListener('mouseout', () => {
+        document.querySelector('.infoBox').innerHTML = ''
+    })
+    document.querySelector('.dblFactory1').addEventListener('mouseout', () => {
+        document.querySelector('.infoBox').innerHTML = ''
+    })
+    document.querySelector('.dblTemple1').addEventListener('mouseout', () => {
+        document.querySelector('.infoBox').innerHTML = ''
+    })
+
+
+    window.addEventListener('click', (e) => {
+        switch (e.srcElement.id) {
+            case 'clicker' :
+                if (cookieAmount >= clicker.cost) {
+                    cookieAmount -= clicker.cost
+                    clicker.cost = Math.floor(clicker.cost * 1.06)
+                    clicker.amount++
+                    perSecond += clicker.cookiesAdded
+                    perClick += perClickMod
+                    document.querySelector('.clickerTip').innerHTML = `Generating ${clicker.cookiesAdded * clicker.amount} cookies per second`
+                    updateDOM()
+                }
+                break
+            case 'grandma' :
+                if (cookieAmount >= grandma.cost) {
+                    cookieAmount -= grandma.cost
+                    grandma.cost = Math.floor(grandma.cost * 1.06)
+                    grandma.amount++
+                    perSecond += grandma.cookiesAdded
+                    perClick += perClickMod
+                    document.querySelector('.grandmaTip').innerHTML = `Generating ${grandma.cookiesAdded * grandma.amount} cookies per second`
+                    updateDOM()
+                }
+                break
+            case 'cave' :
+                if (cookieAmount >= cave.cost) {
+                    cookieAmount -= cave.cost
+                    cave.cost = Math.floor(cave.cost * 1.06)
+                    cave.amount++
+                    perSecond += cave.cookiesAdded
+                    perClick += perClickMod
+                    document.querySelector('.caveTip').innerHTML = `Generating ${cave.cookiesAdded * cave.amount} cookies per second`
+                    updateDOM()
+                }
+                break
+            case 'factory' :
+                if (cookieAmount >= factory.cost) {
+                    cookieAmount -= factory.cost
+                    factory.cost = Math.floor(factory.cost * 1.06)
+                    factory.amount++
+                    perSecond += factory.cookiesAdded
+                    perClick += perClickMod
+                    document.querySelector('.factoryTip').innerHTML = `Generating ${factory.cookiesAdded * factory.amount} cookies per second`
+                    updateDOM()
+                }
+                break
+            case 'temple' :
+                if (cookieAmount >= temple.cost) {
+                    cookieAmount -= temple.cost
+                    temple.cost = Math.floor(temple.cost * 1.06)
+                    temple.amount++
+                    perSecond += temple.cookiesAdded
+                    perClick += perClickMod
+                    document.querySelector('.templeTip').innerHTML = `Generating ${temple.cookiesAdded * temple.amount} cookies per second`
+                    updateDOM()
+                }
+                break
+
+
+            case 'dblClick1' :
+                if (cookieAmount >= dblClick1.cost) {
+                    cookieAmount = cookieAmount - dblClick1.cost
+                    perClickMod = 2
+                    perClick *= 2
+                    document.getElementById('dblClick1').remove()
+                    dblClick1.used = true
+                    console.log(dblClick1.used)
+                    let index = modifiers.indexOf(dblClick1)
+                    modifiers.splice(index, 1)
+                    updateDOM()
+                }
+                break
+            case 'dblClick2' :
+                if (cookieAmount >= dblClick2.cost) {
+                    cookieAmount -= dblClick2.cost
+                    perClickMod += 2
+                    perClick *= 2
+                    document.getElementById('dblClick2').remove()
+                    dblClick2.used = true
+                    let index = modifiers.indexOf(dblClick2)
+                    modifiers.splice(index, 1)
+                    updateDOM()
+                }
+                break
+            case 'dblGrandma1' :
+                if (cookieAmount >= dblGrandma1.cost) {
+                    cookieAmount -= dblGrandma1.cost
+                    grandma.cookiesAdded *= 2
+                    document.getElementById('dblGrandma1').remove()
+                    dblGrandma1.used = true
+                    let index = modifiers.indexOf(dblGrandma1)
+                    modifiers.splice(index, 1)
+                    document.querySelector('.grandmaTip').innerHTML = `Generating ${grandma.cookiesAdded * grandma.amount} cookies per second`
+                    updateDOM()
+                }
+                break
+            case 'dblCave1' :
+                if (cookieAmount >= dblCave1.cost) {
+                    cookieAmount -= dblCave1.cost
+                    cave.cookiesAdded *= 2
+                    document.getElementById('dblCave1').remove()
+                    dblCave1.used = true
+                    let index = modifiers.indexOf(dblCave1)
+                    modifiers.splice(index, 1)
+                    document.querySelector('.caveTip').innerHTML = `Generating ${cave.cookiesAdded * cave.amount} cookies per second`
+                    updateDOM()
+                }
+                break
+            case 'dblFactory1' :
+                if (cookieAmount >= dblFactory1.cost) {
+                    cookieAmount -= dblFactory1.cost
+                    factory.cookiesAdded *= 2
+                    document.getElementById('dblFactory1').remove()
+                    dblFactory1.used = true
+                    let index = modifiers.indexOf(dblFactory1)
+                    modifiers.splice(index, 1)
+                    document.querySelector('.factoryTip').innerHTML = `Generating ${factory.cookiesAdded * factory.amount} cookies per second`
+                    updateDOM()
+                }
+                break
+            case 'dblTemple1' :
+                if (cookieAmount >= dblTemple1.cost) {
+                    cookieAmount -= dblTemple1.cost
+                    temple.cookiesAdded *= 2
+                    document.getElementById('dblTemple1').remove()
+                    dblTemple1.used = true
+                    let index = modifiers.indexOf(dblTemple1)
+                    modifiers.splice(index, 1)
+                    document.querySelector('.templeTip').innerHTML = `Generating ${temple.cookiesAdded * temple.amount} cookies per second`
+                    updateDOM()
+                }
+                break
+        }
+    })
+
+
+    function getCookies(amt) {
+        cookieAmount += amt
+    }
+
+    setInterval(() => {
+        console.log(dblClick1.used)
+    }, 100)
+
+
+</script>
