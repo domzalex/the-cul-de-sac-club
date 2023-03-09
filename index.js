@@ -159,7 +159,7 @@ app.post("/register", (req, res) => {
             res.redirect("/"); 
         });
     }); 
-}); 
+});
 
 //posts login
 app.post("/login", passport.authenticate("local", { 
